@@ -1,0 +1,23 @@
+.keyboard {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 7px;
+	row-gap: 10px;
+}
+#Capa_1 {
+	width: 10px;
+	height: 10px;
+}
+.keyboard__btn {
+	background-color: gray;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.keyboard__btn_color {
+	background-color: black;
+	color: rgb(181, 190, 187);
+}
+.keyboard__btn_activ {
+	background-color: blue;
+}

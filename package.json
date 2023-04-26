@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.1",
+    "style-loader": "^3.3.2",
+    "svg-inline-loader": "^0.8.2",
+    "webpack": "^5.80.0",
+    "webpack-dev-server": "^4.13.3"
+  },
+  "dependencies": {
+    "webpack-cli": "^5.0.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  }
+}
