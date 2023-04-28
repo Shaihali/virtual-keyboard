@@ -14,6 +14,8 @@ function createDomElement() {
 	keyboard.className = 'keyboard'
 	textareaItem.className = 'textarea__item'
 
+	textareaItem.setAttribute('autofocus', '')
+
 	textarea.append(textareaItem)
 
 	buttons.forEach((button) => {
