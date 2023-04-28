@@ -13,6 +13,7 @@
 	color: white;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: all 0.2s ease-out;
 }
 .keyboard__btn_color {
 	background-color: black;
@@ -20,4 +21,6 @@
 }
 .keyboard__btn_activ {
 	background-color: blue;
+	border-radius: 25px;
+	
 }
