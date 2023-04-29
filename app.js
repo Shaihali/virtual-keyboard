@@ -10,6 +10,7 @@ document.body.append(dom)
 
 
 
+const keyboard = document.querySelector('.keyboard')
 const buttons = document.querySelectorAll('.keyboard__btn')
 const textArea = document.querySelector('.textarea__item')
 const capsLock = document.querySelector('[data-key="CapsLock"]')
@@ -30,6 +31,37 @@ const KEYBOARDWORDRus = [{KeyQ: 'й'}, {KeyW: 'ц'}, {KeyE: 'у'}, {KeyR: 'к'},
                       {KeyM: 'ь'}, {Period: 'б'}, {Comma: 'ю'}, {BracketLeft: 'х'}, 
                       {BracketRight: 'ъ'}, {Backquote: 'ё'}, {Semicolon: 'ж'}, {Quote: "э"}
 ]
+
+const KEYBOARDWORDSHIFTRUS = [
+	                           ['Backquote', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT',
+                              'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft',
+                              'BracketRight', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 
+                              'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 
+                              'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM',
+                              'Period', 'Comma'
+                             ],
+                             [{Digit1: '!'}, {Digit2: '"'}, {Digit3: '№'}, {Digit4: ';'}, {Digit5: '%'},
+                               {Digit6: ':'}, {Digit7: '?'}, {Digit8: '*'}, {Digit9: '('}, {Digit0: ')'}, {Minus: '_'}, {Equal: '+'},
+														 ],
+														 [{Digit1: '1'}, {Digit2: '2'}, {Digit3: '3'}, {Digit4: '4'}, {Digit5: '5'},
+                               {Digit6: '6'}, {Digit7: '7'}, {Digit8: '8'}, {Digit9: '9'}, {Digit0: '0'}, {Minus: '-'}, {Equal: '='},
+														 ],
+														 [{Backquote: '~'}, {Digit1: '!'}, {Digit2: '@'}, {Digit3: '#'}, {Digit4: '$'}, {Digit5: '%'},
+                               {Digit6: '^'}, {Digit7: '&'},  {Digit8: '*'}, {Digit9: '('}, {Digit0: ')'}, {Minus: '_'}, {Equal: '+'},
+															 {BracketLeft: '{'}, {BracketRight: '}'}, {Backslash: '|'}, {Semicolon: ':'},
+                               {Quote: '"'}, {Period: '<'}, {Comma: '>'}, {Slash: '\\'}
+														 ],
+														 [{Backquote: '`'}, {Digit1: '1'}, {Digit2: '2'}, {Digit3: '3'}, {Digit4: '4'}, {Digit5: '5'},
+														 {Digit6: '6'}, {Digit7: '7'}, {Digit8: '8'}, {Digit9: '9'}, {Digit0: '0'}, {Minus: '-'}, {Equal: '='},
+														 {BracketLeft: '['}, {BracketRight: ']'}, {Backslash: '/'}, {Semicolon: ';'},
+														 {Quote: "'"}, {Period: ','}, {Comma: '.'}, {Slash: '/'}
+														 ],
+
+                            ]
+
+
+
+
 
 let lang = ['рус', 'eng']
 let off = 0;
@@ -53,6 +85,49 @@ document.addEventListener('keydown', (e) => {
 		if(btn.getAttribute('data-key') === e.code) {
 			btn.classList.add('keyboard__btn_activ')
 		}
+
+
+		if(e.key === 'Shift') {
+			if(localStorage.getItem('language') === 'рус') {
+				KEYBOARDWORDSHIFTRUS[0].forEach((elem) => {
+					if(btn.getAttribute('data-key') === elem) {
+						if(btn.innerHTML === btn.innerHTML.toUpperCase()) {
+							btn.innerHTML = btn.innerHTML.toLowerCase()
+						} else {
+							btn.innerHTML = btn.innerHTML.toUpperCase()
+						}
+					}
+				})
+				if(btn.getAttribute('data-key') === 'Slash') {
+					btn.innerHTML = ','
+				}
+				if(btn.getAttribute('data-key') === 'Backslash') {
+					btn.innerHTML = '/'
+				}
+				KEYBOARDWORDSHIFTRUS[1].forEach((elem) => {
+					const [key, value] = Object.entries(elem)[0]
+					if(btn.getAttribute('data-key') === key) {
+						btn.innerHTML = value
+					}
+				})
+			} else {
+				KEYBOARDWORDSHIFTRUS[0].forEach((elem) => {
+					if(btn.getAttribute('data-key') === elem) {
+						if(btn.innerHTML === btn.innerHTML.toUpperCase()) {
+							btn.innerHTML = btn.innerHTML.toLowerCase()
+						} else {
+							btn.innerHTML = btn.innerHTML.toUpperCase()
+						}
+					}
+				})
+				KEYBOARDWORDSHIFTRUS[3].forEach((elem) => {
+					const [key, value] = Object.entries(elem)[0]
+					if(btn.getAttribute('data-key') === key) {
+						btn.innerHTML = value
+					}
+				})
+			}
+		}
   })
 })
 
@@ -62,6 +137,50 @@ document.addEventListener('keyup', (e) => {
 	buttons.forEach((btn) => {
 		if(btn.getAttribute('data-key') === e.code) {
 			btn.classList.remove('keyboard__btn_activ')
+		}
+
+
+		if(e.key === 'Shift') {
+			if(localStorage.getItem('language') === 'рус') {
+				KEYBOARDWORDSHIFTRUS[0].forEach((elem) => {
+					if(btn.getAttribute('data-key') === elem) {
+						if(btn.innerHTML === btn.innerHTML.toLowerCase()) {
+							btn.innerHTML = btn.innerHTML.toUpperCase()
+						} else {
+							btn.innerHTML = btn.innerHTML.toLowerCase()
+						}
+					}
+				})
+				if(btn.getAttribute('data-key') === 'Slash') {
+					btn.innerHTML = '.'
+				}
+				if(btn.getAttribute('data-key') === 'Backslash') {
+					btn.innerHTML = '\\'
+				}
+				KEYBOARDWORDSHIFTRUS[2].forEach((elem) => {
+					const [key, value] = Object.entries(elem)[0]
+					if(btn.getAttribute('data-key') === key) {
+						btn.innerHTML = value
+					}
+				})
+			}else {
+				KEYBOARDWORDSHIFTRUS[0].forEach((elem) => {
+					if(btn.getAttribute('data-key') === elem) {
+						if(btn.innerHTML === btn.innerHTML.toLowerCase()) {
+							btn.innerHTML = btn.innerHTML.toUpperCase()
+						} else {
+							btn.innerHTML = btn.innerHTML.toLowerCase()
+						}
+					}
+				})
+				KEYBOARDWORDSHIFTRUS[4].forEach((elem) => {
+					const [key, value] = Object.entries(elem)[0]
+					if(btn.getAttribute('data-key') === key) {
+						btn.innerHTML = value
+					}
+				})
+			}
+			
 		}
 	})
 })
@@ -226,8 +345,9 @@ document.addEventListener('keyup', (e) => {
 			} else if(event.key === 'Shift' || event.key === 'Alt' || event.key === 'Control' || event.key === 'Meta') {
 				event.preventDefault();
 
-				
-			}else {
+
+
+			} else {
 				buttons.forEach((btn) => {
 					if(event.code === btn.getAttribute('data-key')) {
 						textArea.value += btn.textContent
@@ -240,4 +360,7 @@ document.addEventListener('keyup', (e) => {
   })
 
 
-	
+const exceptions = ['Tab', 'Caps Lock', 'Ctrl', 'ENTER', 'Backspace', ' ']
+	keyboard.addEventListener('click', (e) =>  {
+    // console.log(e.target)
+	})

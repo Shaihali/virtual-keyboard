@@ -24,7 +24,7 @@ function createDomElement() {
 
 	mainTitle.innerText = 'Виртуальная клавиатура'
 	textDesc.innerText = 'Клавиатура создана в операционной системе Windows'
-	textLang.innerText = 'Для переключения языка комбинация: левыe ctrl + alt'
+	textLang.innerText = 'Для переключения языка комбинация: ctrl + alt'
 
 
 	textareaItem.setAttribute('autofocus', '')
