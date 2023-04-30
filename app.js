@@ -1,5 +1,5 @@
 import './styles/style.css';
-import { createDomElement } from './js/create-dom-element.js';
+import createDomElement from './js/create-dom-element';
 
 const dom = createDomElement();
 document.body.append(dom);
@@ -318,20 +318,22 @@ const exceptions = ['Tab', 'CapsLock', 'ControlLeft', 'ControlRight', 'ShiftLeft
 
 keyboard.addEventListener('click', (e) => {
   e.preventDefault();
-  const targetAttributeKey = e.target.getAttribute('data-key')
+  const targetAttributeKey = e.target.getAttribute('data-key');
   if (e.target.classList.contains('keyboard__btn') && !exceptions.includes(targetAttributeKey)) {
     textArea.value += e.target.textContent;
   }
   if (targetAttributeKey === 'Tab') {
     const start = textArea.selectionStart;
-    textArea.value = `${textArea.value.substring(start)}\t`;
+    textArea.value = `${textArea.value.substring(0, start)}\t`;
+    textArea.selectionEnd = start + 1;
+    textArea.selectionStart = textArea.selectionEnd;
   }
 
   if (targetAttributeKey === 'CapsLock') {
-    e.target.classList.toggle('keyboard__btn_activ')
+    e.target.classList.toggle('keyboard__btn_activ');
     buttons.forEach((btn) => {
       const button = btn;
-      localStorage.getItem('language') === 'eng' ? off = 1 : off = 0;
+      off = localStorage.getItem('language') === 'eng' ? 1 : 0;
       if (off === 1) {
         KEYBOARDWORD.forEach((item) => {
           const [key, value] = Object.entries(item)[0];

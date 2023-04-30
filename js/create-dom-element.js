@@ -1,4 +1,4 @@
-import { createKeyboard } from './create-keyboard';
+import createKeyboard from './create-keyboard';
 
 const buttons = createKeyboard();
 
@@ -43,4 +43,4 @@ function createDomElement() {
   return wrapper;
 }
 
-export { createDomElement };
+export default createDomElement;

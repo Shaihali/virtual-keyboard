@@ -12,5 +12,7 @@ module.exports = {
   },
   rules: {
     // 'no-param-reassign': 'off',
+    'max-len': ['error', { code: 150 }],
   },
+  ignorePatterns: ['dist/'],
 };

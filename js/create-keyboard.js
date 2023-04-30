@@ -1,4 +1,4 @@
-import { Button } from './classes';
+import Button from './classes';
 import svg from '../assets/svg/1.svg';
 
 const buttonSize20 = new Button(50, 50);
@@ -32,7 +32,7 @@ function createKeyboard() {
   const validArrForColor = ['`', 'ё', 'Ё', 'Tab', 'Caps Lock', 'Shift', 'Ctrl', 'ENTER', 'DEL', 'Win', 'Backspace', 'Alt'];
   const validArrForSize = ['Tab', 'Caps Lock', 'Ctrl', 'ENTER', 'Backspace', ' '];
 
-  for (let i = 0; i < KEYBOARDDATA.length; i++) {
+  for (let i = 0; i < KEYBOARDDATA.length; i += 1) {
     const button = document.createElement('button');
 
     if (localStorage.getItem('language') === 'eng') {
@@ -48,8 +48,10 @@ function createKeyboard() {
     button.className = 'keyboard__btn';
 
     const shadedButtons = buttonsArr.filter((btn) => validArrForColor.some((value) => btn.innerHTML.includes(value)));
-    shadedButtons.forEach((button) => {
-      button.className = 'keyboard__btn keyboard__btn_color';
+
+    shadedButtons.forEach((btn) => {
+      const buttonShaded = btn;
+      buttonShaded.className = 'keyboard__btn keyboard__btn_color';
     });
 
     const ordinaryButtons = buttonsArr.filter((btn) => {
@@ -57,8 +59,9 @@ function createKeyboard() {
       return !validArrForSize.includes(textContent);
     });
     ordinaryButtons.forEach((btn) => {
-      btn.style.width = buttonSize20.width;
-      btn.style.height = buttonSize20.height;
+      const buttonOrdinary = btn;
+      buttonOrdinary.style.width = buttonSize20.width;
+      buttonOrdinary.style.height = buttonSize20.height;
     });
     if (button.textContent === 'Backspace' || button.textContent === 'Caps Lock') {
       button.style.width = '115px';
@@ -69,12 +72,11 @@ function createKeyboard() {
     if (button.textContent === 'ENTER') {
       button.style.width = '107px';
     }
-    for (const button of buttonsArr) {
-      if (button.innerText === 'Shift') {
-        button.style.width = '115px';
-        break;
-      }
+    const shiftButton = buttonsArr.find((btn) => btn.innerText === 'Shift');
+    if (shiftButton) {
+      shiftButton.style.width = '115px';
     }
+
     if (button.textContent === 'Ctrl') {
       button.style.width = '82px';
     }
@@ -100,4 +102,4 @@ function createKeyboard() {
   return buttonsArr;
 }
 
-export { KEYBOARDDATARUS, KEYBOARDDATA, createKeyboard };
+export default createKeyboard;
