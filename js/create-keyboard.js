@@ -47,6 +47,7 @@ function createKeyboard() {
 
     button.className = 'keyboard__btn';
 
+    // eslint-disable-next-line max-len
     const shadedButtons = buttonsArr.filter((btn) => validArrForColor.some((value) => btn.innerHTML.includes(value)));
 
     shadedButtons.forEach((btn) => {

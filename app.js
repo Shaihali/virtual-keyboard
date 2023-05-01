@@ -212,6 +212,7 @@ document.addEventListener('keydown', (event) => {
   } else if (event.code === 'CapsLock') {
     buttons.forEach((btn) => {
       const button = btn;
+      off = localStorage.getItem('language') === 'eng' ? 1 : 0;
       if (off === 1) {
         KEYBOARDWORD.forEach((item) => {
           const [key, value] = Object.entries(item)[0];
